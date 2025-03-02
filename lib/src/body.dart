@@ -76,22 +76,17 @@ class Body extends StatelessWidget {
                     ClipRect(
                       child: SizedBox(
                         height: 40,
-                        child: Align(
-                          alignment: Alignment.bottomCenter,
-                          widthFactor:
-                              items.indexOf(item) == currentIndex ? 1.0 : 0.0,
-                          child: DefaultTextStyle(
-                            style: TextStyle(
-                              color: Color.lerp(_selectedColor.withOpacity(0.0),
-                                  _selectedColor, t),
-                              fontWeight: FontWeight.w600,
-                            ),
-                            child: CircleAvatar(
-                                radius: 2.5,
-                                backgroundColor: dotIndicatorColor != null
-                                    ? dotIndicatorColor
-                                    : _selectedColor),
+                        child: DefaultTextStyle(
+                          style: TextStyle(
+                            color: Color.lerp(_selectedColor.withOpacity(0.0),
+                                _selectedColor, t),
+                            fontWeight: FontWeight.w600,
                           ),
+                          child: CircleAvatar(
+                              radius: 2.5,
+                              backgroundColor: dotIndicatorColor != null
+                                  ? dotIndicatorColor
+                                  : _selectedColor),
                         ),
                         ),
                       ),
