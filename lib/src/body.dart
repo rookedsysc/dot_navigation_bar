@@ -65,7 +65,9 @@ class Body extends StatelessWidget {
                       splashColor ?? _selectedColor.withOpacity(0.1),
                   splashColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   hoverColor: splashColor ?? _selectedColor.withOpacity(0.1),
-                  child: Stack(alignment: Alignment.center, children: <Widget>[
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: <Widget>[
                     IconTheme(
                       data: IconThemeData(
                         color: Color.lerp(_unselectedColor, _selectedColor, t),
@@ -73,6 +75,7 @@ class Body extends StatelessWidget {
                       ),
                       child: item.icon,
                     ),
+                    SizedBox(height: 4,),
                     ClipRect(
                       child: SizedBox(
                         height: 40,
