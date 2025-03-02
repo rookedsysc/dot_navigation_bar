@@ -65,54 +65,38 @@ class Body extends StatelessWidget {
                       splashColor ?? _selectedColor.withOpacity(0.1),
                   splashColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   hoverColor: splashColor ?? _selectedColor.withOpacity(0.1),
-                  child: Stack(children: <Widget>[
-                    Padding(
-                      padding: itemPadding -
-                          (enablePaddingAnimation
-                              ? EdgeInsets.only(right: itemPadding.right * t)
-                              : EdgeInsets.zero),
-                      child: Row(
-                        children: [
-                          IconTheme(
-                            data: IconThemeData(
-                              color: Color.lerp(
-                                  _unselectedColor, _selectedColor, t),
-                              size: 24,
-                            ),
-                            child: item.icon,
-                          ),
-                        ],
+                  child: Stack(alignment: Alignment.center, children: <Widget>[
+                    IconTheme(
+                      data: IconThemeData(
+                        color: Color.lerp(_unselectedColor, _selectedColor, t),
+                        size: 24,
                       ),
+                      child: item.icon,
                     ),
                     ClipRect(
                       child: SizedBox(
                         height: 40,
                         child: Align(
                           alignment: Alignment.bottomCenter,
-                          widthFactor: items.indexOf(item) == currentIndex ? 1.0 : 0.0,
-                          child: Padding(
-                            padding: EdgeInsetsDirectional.only(
-                                start: itemPadding.right / 0.63,
-                                end: itemPadding.right),
-                            child: DefaultTextStyle(
-                              style: TextStyle(
-                                color: Color.lerp(
-                                    _selectedColor.withOpacity(0.0),
-                                    _selectedColor,
-                                    t),
-                                fontWeight: FontWeight.w600,
-                              ),
-                              child: CircleAvatar(
-                                  radius: 2.5,
-                                  backgroundColor: dotIndicatorColor != null
-                                      ? dotIndicatorColor
-                                      : _selectedColor),
+                          widthFactor:
+                              items.indexOf(item) == currentIndex ? 1.0 : 0.0,
+                          child: DefaultTextStyle(
+                            style: TextStyle(
+                              color: Color.lerp(_selectedColor.withOpacity(0.0),
+                                  _selectedColor, t),
+                              fontWeight: FontWeight.w600,
                             ),
+                            child: CircleAvatar(
+                                radius: 2.5,
+                                backgroundColor: dotIndicatorColor != null
+                                    ? dotIndicatorColor
+                                    : _selectedColor),
                           ),
                         ),
+                        ),
                       ),
-                    ),
-                  ]),
+                    ],
+                  ),
                 ),
               );
             },
