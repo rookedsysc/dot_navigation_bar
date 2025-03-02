@@ -50,9 +50,8 @@ class Body extends StatelessWidget {
               final _selectedColor =
                   item.selectedColor ?? selectedItemColor ?? theme.primaryColor;
 
-              final _unselectedColor = item.unselectedColor ??
-                  unselectedItemColor ??
-                  theme.iconTheme.color;
+              final _unselectedColor =
+                  item.unselectedColor ?? unselectedItemColor ?? theme.iconTheme.color;
 
               return Material(
                 color: Color.lerp(Colors.transparent, Colors.transparent, t),
@@ -61,39 +60,37 @@ class Body extends StatelessWidget {
                 child: InkWell(
                   onTap: () => onTap.call(items.indexOf(item)),
                   focusColor: splashColor ?? _selectedColor.withOpacity(0.1),
-                  highlightColor:
-                      splashColor ?? _selectedColor.withOpacity(0.1),
+                  highlightColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   splashColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   hoverColor: splashColor ?? _selectedColor.withOpacity(0.1),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: <Widget>[
-                    IconTheme(
-                      data: IconThemeData(
-                        color: Color.lerp(_unselectedColor, _selectedColor, t),
-                        size: 24,
-                      ),
-                      child: item.icon,
-                    ),
-                    SizedBox(height: 4,),
-                    ClipRect(
-                      child: SizedBox(
-                        height: 40,
-                        child: DefaultTextStyle(
-                          style: TextStyle(
-                            color: Color.lerp(_selectedColor.withOpacity(0.0),
-                                _selectedColor, t),
-                            fontWeight: FontWeight.w600,
+                  child: Padding(
+                    padding: itemPadding -
+                        (enablePaddingAnimation
+                            ? EdgeInsets.only(right: itemPadding.right * t)
+                            : EdgeInsets.zero),
+                    child: SizedBox(
+                      height: 40,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.center,
+                        children: [
+                          IconTheme(
+                            data: IconThemeData(
+                              color: Color.lerp(_unselectedColor, _selectedColor, t),
+                              size: 24,
+                            ),
+                            child: item.icon,
                           ),
-                          child: CircleAvatar(
+                          Positioned(
+                            bottom: 0,
+                            child: CircleAvatar(
                               radius: 2.5,
-                              backgroundColor: dotIndicatorColor != null
-                                  ? dotIndicatorColor
-                                  : _selectedColor),
-                        ),
-                        ),
+                              backgroundColor: dotIndicatorColor ?? _selectedColor,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               );
