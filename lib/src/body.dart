@@ -89,7 +89,7 @@ class Body extends StatelessWidget {
                         height: 40,
                         child: Align(
                           alignment: Alignment.bottomCenter,
-                          widthFactor: t,
+                          widthFactor: items.indexOf(item) == currentIndex ? 1.0 : 0.0,
                           child: Padding(
                             padding: EdgeInsetsDirectional.only(
                                 start: itemPadding.right / 0.63,
