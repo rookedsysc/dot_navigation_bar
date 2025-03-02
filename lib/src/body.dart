@@ -50,8 +50,9 @@ class Body extends StatelessWidget {
               final _selectedColor =
                   item.selectedColor ?? selectedItemColor ?? theme.primaryColor;
 
-              final _unselectedColor =
-                  item.unselectedColor ?? unselectedItemColor ?? theme.iconTheme.color;
+              final _unselectedColor = item.unselectedColor ??
+                  unselectedItemColor ??
+                  theme.iconTheme.color;
 
               return Material(
                 color: Color.lerp(Colors.transparent, Colors.transparent, t),
@@ -60,7 +61,8 @@ class Body extends StatelessWidget {
                 child: InkWell(
                   onTap: () => onTap.call(items.indexOf(item)),
                   focusColor: splashColor ?? _selectedColor.withOpacity(0.1),
-                  highlightColor: splashColor ?? _selectedColor.withOpacity(0.1),
+                  highlightColor:
+                      splashColor ?? _selectedColor.withOpacity(0.1),
                   splashColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   hoverColor: splashColor ?? _selectedColor.withOpacity(0.1),
                   child: Padding(
@@ -76,18 +78,21 @@ class Body extends StatelessWidget {
                         children: [
                           IconTheme(
                             data: IconThemeData(
-                              color: Color.lerp(_unselectedColor, _selectedColor, t),
-                              size: 24,
+                              color: Color.lerp(
+                                  _unselectedColor, _selectedColor, t),
+                              size: 22,
                             ),
                             child: item.icon,
                           ),
-                          Positioned(
-                            bottom: 0,
-                            child: CircleAvatar(
-                              radius: 2.5,
-                              backgroundColor: dotIndicatorColor ?? _selectedColor,
+                          if (items.indexOf(item) == currentIndex)
+                            Positioned(
+                              bottom: 0,
+                              child: CircleAvatar(
+                                radius: 2.5,
+                                backgroundColor:
+                                    dotIndicatorColor ?? _selectedColor,
+                              ),
                             ),
-                          ),
                         ],
                       ),
                     ),
